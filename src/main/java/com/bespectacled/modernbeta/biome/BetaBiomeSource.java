@@ -30,9 +30,9 @@ public class BetaBiomeSource extends BiomeSource {
 
     public static final Codec<BetaBiomeSource> CODEC = RecordCodecBuilder.create(instance -> instance
             .group(
-                Codec.LONG.fieldOf("seed").stable().forGetter(betaBiomeSource -> betaBiomeSource.seed),
-                RegistryLookupCodec.of(Registry.BIOME_KEY).forGetter(betaBiomeSource -> betaBiomeSource.biomeRegistry),
-                CompoundTag.CODEC.fieldOf("settings").forGetter(settings -> settings.settings)
+                    Codec.LONG.fieldOf("seed").stable().forGetter(betaBiomeSource -> betaBiomeSource.seed),
+                    RegistryLookupCodec.of(Registry.BIOME_KEY).forGetter(betaBiomeSource -> betaBiomeSource.biomeRegistry),
+                    CompoundTag.CODEC.fieldOf("settings").forGetter(settings -> settings.settings)
             ).apply(instance, (instance).stable(BetaBiomeSource::new)));
 
     private final long seed;
@@ -56,22 +56,22 @@ public class BetaBiomeSource extends BiomeSource {
     private boolean generateOceans = false;
     private boolean generateBetaOceans = true;
     private boolean generateIceDesert = false;
-    
+
     public BetaBiomeSource(long seed, Registry<Biome> registry, CompoundTag settings) {
         super(BetaBiomes.getBiomeList().stream().map((registryKey) -> () -> (Biome) registry.get(registryKey)));
 
         this.seed = seed;
         this.biomeRegistry = registry;
         this.settings = settings;
-        
+
         if (settings.contains("generateOceans")) this.generateOceans = settings.getBoolean("generateOceans");
         if (settings.contains("generateBetaOceans")) this.generateBetaOceans = settings.getBoolean("generateBetaOceans");
         if (settings.contains("generateIceDesert")) this.generateIceDesert = settings.getBoolean("generateIceDesert");
-        
+
         tempNoiseOctaves = new OldNoiseGeneratorOctaves2(new Random(this.seed * 9871L), 4);
         humidNoiseOctaves = new OldNoiseGeneratorOctaves2(new Random(this.seed * 39811L), 4);
         noiseOctaves = new OldNoiseGeneratorOctaves2(new Random(this.seed * 543321L), 2);
-        
+
         generateBiomeLookup(registry);
     }
 
@@ -82,7 +82,7 @@ public class BetaBiomeSource extends BiomeSource {
 
         // Sample biome at this one absolute coordinate.
         fetchTempHumid(absX, absZ, 1, 1);
-        
+
         return biomesInChunk[0];
     }
 
@@ -142,11 +142,11 @@ public class BetaBiomeSource extends BiomeSource {
 
         return biomesInChunk;
     }
-    
+
     public void fetchTempHumid16(int x, int z, Biome[] landBiomes, Biome[] oceanBiomes, double[] temps, double[] humids) {
         int sizeX = 16;
         int sizeZ = 16;
-        
+
         temps = tempNoiseOctaves.func_4112_a(temps, x, z, sizeX, sizeX, 0.02500000037252903D, 0.02500000037252903D,
                 0.25D);
         humids = humidNoiseOctaves.func_4112_a(humids, x, z, sizeX, sizeX, 0.05000000074505806D, 0.05000000074505806D,
@@ -218,8 +218,8 @@ public class BetaBiomeSource extends BiomeSource {
     public Biome getBiome(float temp, float humid, Registry<Biome> registry) {
         humid *= temp;
         if (humid > 0 && temp > 0) {
-            return registry.get(new Identifier(ModernBeta.ID, "swampland"));
-        } else return registry.get(new Identifier(ModernBeta.ID, "swampland"));
+            return registry.get(new Identifier("minecraft", "desert"));
+        } else return registry.get(new Identifier("minecraft", "desert"));
     }
 
     public Biome getOceanBiome(float temp, float humid, Registry<Biome> registry) {
