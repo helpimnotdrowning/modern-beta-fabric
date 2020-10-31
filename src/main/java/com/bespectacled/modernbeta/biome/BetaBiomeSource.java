@@ -241,9 +241,6 @@ public class BetaBiomeSource extends BiomeSource {
         if (humid > 0.8 && temp > 0.7f) {
             return registry.get(new Identifier("minecraft", "flower_forest"));
         }
-        if (humid > 0.5 && temp > 0.0f) {
-            return registry.get(new Identifier("minecraft", "frozen_river"));
-        }
         if (humid > 0.8 && temp > 0.25f) {
             return registry.get(new Identifier("minecraft", "giant_spruce_taiga"));
         }
@@ -273,9 +270,6 @@ public class BetaBiomeSource extends BiomeSource {
         }
         if (humid > 1.0 && temp > 0.9f) {
             return registry.get(new Identifier("minecraft", "mushroom_field_shore"));
-        }
-        if (humid > 0.5 && temp > 0.5f) {
-            return registry.get(new Identifier("minecraft", "river"));
         }
         if (humid > 0.0 && temp > 1.1f) {
             return registry.get(new Identifier("minecraft", "shattered_savanna"));
