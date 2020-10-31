@@ -212,53 +212,14 @@ public class BetaBiomeSource extends BiomeSource {
         return biomeLookupTable[i + j * 64];
     }
 
+    // watch me, another ape who smashes rocks together, try to get modern biomes to generate
+    // i know basically nothing except for basic java syntax
+    // this will be done in the hackiest way possible
     public Biome getBiome(float temp, float humid, Registry<Biome> registry) {
         humid *= temp;
-
-        if (temp < 0.1F) {
-            if (this.generateIceDesert)
-                return registry.get(new Identifier(ModernBeta.ID, "ice_desert"));
-            else
-                return registry.get(new Identifier(ModernBeta.ID, "tundra"));
-        }
-
-        if (humid < 0.2F) {
-            if (temp < 0.5F) {
-                return registry.get(new Identifier(ModernBeta.ID, "tundra"));
-            }
-            if (temp < 0.95F) {
-                return registry.get(new Identifier(ModernBeta.ID, "savanna"));
-            } else {
-                return registry.get(new Identifier(ModernBeta.ID, "desert"));
-            }
-        }
-
-        if (humid > 0.5F && temp < 0.7F) {
+        if (humid > 0 && temp > 0) {
             return registry.get(new Identifier(ModernBeta.ID, "swampland"));
-        }
-
-        if (temp < 0.5F) {
-            return registry.get(new Identifier(ModernBeta.ID, "taiga"));
-        }
-
-        if (temp < 0.97F) {
-            if (humid < 0.35F) {
-                return registry.get(new Identifier(ModernBeta.ID, "shrubland"));
-            } else {
-                return registry.get(new Identifier(ModernBeta.ID, "forest"));
-            }
-        }
-
-        if (humid < 0.45F) {
-            return registry.get(new Identifier(ModernBeta.ID, "plains"));
-        }
-
-        if (humid < 0.9F) {
-            return registry.get(new Identifier(ModernBeta.ID, "seasonal_forest"));
-        } else {
-            return registry.get(new Identifier(ModernBeta.ID, "rainforest"));
-        }
-
+        } else return registry.get(new Identifier(ModernBeta.ID, "swampland"));
     }
 
     public Biome getOceanBiome(float temp, float humid, Registry<Biome> registry) {
