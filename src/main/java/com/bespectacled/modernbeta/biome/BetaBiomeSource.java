@@ -220,9 +220,7 @@ public class BetaBiomeSource extends BiomeSource {
     public Biome getBiome(float temp, float humid, Registry<Biome> registry) {
         humid *= temp;
         if (humid < 0.2) {
-            if (temp > 1.9) {
-                return registry.get(new Identifier("minecraft", "desert"));
-            } else if (temp > 1.7) {
+            if (temp > 1.8) {
                 return registry.get(new Identifier("minecraft", "badlands"));
             } else {
                 return registry.get(new Identifier(ModernBeta.ID, "desert"));
@@ -260,17 +258,15 @@ public class BetaBiomeSource extends BiomeSource {
                 return registry.get(new Identifier("minecraft", "flower_forest"));
             } else if (temp > 0.3) {
                 return registry.get(new Identifier(ModernBeta.ID, "forest"));
-            } else if (temp > 0.25) {
-                return registry.get(new Identifier("minecraft", "giant_tree_taiga"));
             } else {
-                return registry.get(new Identifier("minecraft", "giant_spruce_taiga"));
+                return registry.get(new Identifier("minecraft", "giant_tree_taiga"));
             }
         } else if (humid < 0.9) {
             return registry.get(new Identifier(ModernBeta.ID, "swampland"));
         } else if (humid < 1.0) {
-            if (temp > 0.9) {
+            if (temp > 1.1) {
                 return registry.get(new Identifier("minecraft", "jungle"));
-            } else if (temp > 0.8) {
+            } else if (temp > 1) {
                 return registry.get(new Identifier("minecraft", "bamboo_jungle"));
             } else {
                 return registry.get(new Identifier(ModernBeta.ID, "rainforest"));
