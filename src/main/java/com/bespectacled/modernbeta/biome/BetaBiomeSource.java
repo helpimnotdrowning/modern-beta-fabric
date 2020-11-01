@@ -220,11 +220,15 @@ public class BetaBiomeSource extends BiomeSource {
     public Biome getBiome(float temp, float humid, Registry<Biome> registry) {
         humid *= temp;
         if (humid < 0.2) {
-            if (temp > 1.8) {
+            if (temp > 0.85) {
                 return registry.get(new Identifier("minecraft", "badlands"));
-            } else {
+            } else if (temp > 0.65) {
                 return registry.get(new Identifier(ModernBeta.ID, "desert"));
-            }
+            } else if (temp > 0.2) {
+                return registry.get(new Identifier(ModernBeta.ID, "tundra"));
+            } else {
+                return registry.get(new Identifier("minecraft", "ice_spikes"));
+        }
         } else if (humid < 0.3) {
             return registry.get(new Identifier(ModernBeta.ID, "savanna"));
         } else if (humid < 0.5) {
@@ -232,16 +236,10 @@ public class BetaBiomeSource extends BiomeSource {
                 return registry.get(new Identifier("minecraft", "sunflower_plains"));
             } else if (temp > 0.6) {
                 return registry.get(new Identifier(ModernBeta.ID, "plains"));
-            } else if (temp > -0.5) {
+            } else if (temp > 0.2) {
                 return registry.get(new Identifier(ModernBeta.ID, "shrubland"));
             } else {
                 return registry.get(new Identifier(ModernBeta.ID, "taiga"));
-            }
-        } else if (humid < 0.6) {
-            if (temp > -0.5) {
-                return registry.get(new Identifier(ModernBeta.ID, "tundra"));
-            } else {
-                return registry.get(new Identifier("minecraft", "ice_spikes"));
             }
         } else if (humid < 0.625) {
             if (temp > 0.5) {
@@ -249,9 +247,9 @@ public class BetaBiomeSource extends BiomeSource {
             } else {
                 return registry.get(new Identifier("minecraft", "birch_forest"));
             }
-        } else if (humid < 0.8) {
+        } else if (humid < 0.7) {
             return registry.get(new Identifier(ModernBeta.ID, "seasonal_forest"));
-        } else if (humid < 0.85) {
+        } else if (humid < 0.8) {
             if (temp > 0.7) {
                 return registry.get(new Identifier("minecraft", "dark_forest"));
             } else if (temp > 0.6) {
@@ -261,12 +259,12 @@ public class BetaBiomeSource extends BiomeSource {
             } else {
                 return registry.get(new Identifier("minecraft", "giant_tree_taiga"));
             }
-        } else if (humid < 0.9) {
+        } else if (humid < 0.85) {
             return registry.get(new Identifier(ModernBeta.ID, "swampland"));
-        } else if (humid < 1.0) {
-            if (temp > 1.1) {
+        } else if (humid < 0.9) {
+            if (temp > 0.8) {
                 return registry.get(new Identifier("minecraft", "jungle"));
-            } else if (temp > 1) {
+            } else if (temp > 0.7) {
                 return registry.get(new Identifier("minecraft", "bamboo_jungle"));
             } else {
                 return registry.get(new Identifier(ModernBeta.ID, "rainforest"));
