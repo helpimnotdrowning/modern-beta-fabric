@@ -215,86 +215,73 @@ public class BetaBiomeSource extends BiomeSource {
     // watch me, another ape who smashes rocks together, try to get modern biomes to generate
     // i know basically nothing except for basic java syntax
     // this will be done in the hackiest way possible
+
+    // TODO: Fix weird bands of cold biomes next to deserts/jungles/savannas
     public Biome getBiome(float temp, float humid, Registry<Biome> registry) {
         humid *= temp;
-        if (humid > 0.0 && temp > 2.0f) {
-            return registry.get(new Identifier("minecraft", "badlands"));
+        if (humid < 0.2) {
+            if (temp > 1.9) {
+                return registry.get(new Identifier("minecraft", "desert"));
+            } else if (temp > 1.7) {
+                return registry.get(new Identifier("minecraft", "badlands"));
+            } else {
+                return registry.get(new Identifier(ModernBeta.ID, "desert"));
+            }
+        } else if (humid < 0.3) {
+            return registry.get(new Identifier(ModernBeta.ID, "savanna"));
+        } else if (humid < 0.5) {
+            if (temp > 0.7) {
+                return registry.get(new Identifier("minecraft", "sunflower_plains"));
+            } else if (temp > 0.6) {
+                return registry.get(new Identifier(ModernBeta.ID, "plains"));
+            } else if (temp > -0.5) {
+                return registry.get(new Identifier(ModernBeta.ID, "shrubland"));
+            } else {
+                return registry.get(new Identifier(ModernBeta.ID, "taiga"));
+            }
+        } else if (humid < 0.6) {
+            if (temp > -0.5) {
+                return registry.get(new Identifier(ModernBeta.ID, "tundra"));
+            } else {
+                return registry.get(new Identifier("minecraft", "ice_spikes"));
+            }
+        } else if (humid < 0.625) {
+            if (temp > 0.5) {
+                return registry.get(new Identifier("minecraft", "tall_birch_forest"));
+            } else {
+                return registry.get(new Identifier("minecraft", "birch_forest"));
+            }
+        } else if (humid < 0.8) {
+            return registry.get(new Identifier(ModernBeta.ID, "seasonal_forest"));
+        } else if (humid < 0.85) {
+            if (temp > 0.7) {
+                return registry.get(new Identifier("minecraft", "dark_forest"));
+            } else if (temp > 0.6) {
+                return registry.get(new Identifier("minecraft", "flower_forest"));
+            } else if (temp > 0.3) {
+                return registry.get(new Identifier(ModernBeta.ID, "forest"));
+            } else if (temp > 0.25) {
+                return registry.get(new Identifier("minecraft", "giant_tree_taiga"));
+            } else {
+                return registry.get(new Identifier("minecraft", "giant_spruce_taiga"));
+            }
+        } else if (humid < 0.9) {
+            return registry.get(new Identifier(ModernBeta.ID, "swampland"));
+        } else if (humid < 1.0) {
+            if (temp > 0.9) {
+                return registry.get(new Identifier("minecraft", "jungle"));
+            } else if (temp > 0.8) {
+                return registry.get(new Identifier("minecraft", "bamboo_jungle"));
+            } else {
+                return registry.get(new Identifier(ModernBeta.ID, "rainforest"));
+            }
+        } else {
+            if (temp > 0.9) {
+                return registry.get(new Identifier("minecraft", "mushroom_fields"));
+            } else {
+                return registry.get(new Identifier("minecraft", "mushroom_field_shore"));
+            }
         }
-        if (humid > 0.9 && temp > 0.95f) {
-            return registry.get(new Identifier("minecraft", "bamboo_jungle"));
-        }
-        if (humid > 0.6 && temp > 0.6f) {
-            return registry.get(new Identifier("minecraft", "birch_forest"));
-        }
-        if (humid > 0.8 && temp > 0.7f) {
-            return registry.get(new Identifier("minecraft", "dark_forest"));
-        }
-        if (humid > 0.0 && temp > 2.0f) {
-            return registry.get(new Identifier("minecraft", "desert"));
-        }
-        if (humid > 0.0 && temp > 2.0f) {
-            return registry.get(new Identifier("minecraft", "desert_lakes"));
-        }
-        if (humid > 0.0 && temp > 2.0f) {
-            return registry.get(new Identifier("minecraft", "eroded_badlands"));
-        }
-        if (humid > 0.8 && temp > 0.7f) {
-            return registry.get(new Identifier("minecraft", "flower_forest"));
-        }
-        if (humid > 0.8 && temp > 0.25f) {
-            return registry.get(new Identifier("minecraft", "giant_spruce_taiga"));
-        }
-        if (humid > 0.8 && temp > 0.3f) {
-            return registry.get(new Identifier("minecraft", "giant_tree_taiga"));
-        }
-        if (humid > 0.3 && temp > 0.2f) {
-            return registry.get(new Identifier("minecraft", "gravelly_mountains"));
-        }
-        if (humid > 0.5 && temp > 0.0f) {
-            return registry.get(new Identifier("minecraft", "ice_spikes"));
-        }
-        if (humid > 0.9 && temp > 0.95f) {
-            return registry.get(new Identifier("minecraft", "jungle"));
-        }
-        if (humid > 0.0 && temp > 2.0f) {
-            return registry.get(new Identifier("minecraft", "modified_badlands_plateau"));
-        }
-        if (humid > 0.3 && temp > 0.2f) {
-            return registry.get(new Identifier("minecraft", "modified_gravelly_mountains"));
-        }
-        if (humid > 0.0 && temp > 2.0f) {
-            return registry.get(new Identifier("minecraft", "modified_wooded_badlands_plateau"));
-        }
-        if (humid > 1.0 && temp > 0.9f) {
-            return registry.get(new Identifier("minecraft", "mushroom_fields"));
-        }
-        if (humid > 1.0 && temp > 0.9f) {
-            return registry.get(new Identifier("minecraft", "mushroom_field_shore"));
-        }
-        if (humid > 0.0 && temp > 1.1f) {
-            return registry.get(new Identifier("minecraft", "shattered_savanna"));
-        }
-        if (humid > 0.0 && temp > 1.0f) {
-            return registry.get(new Identifier("minecraft", "shattered_savanna_plateau"));
-        }
-        if (humid > 0.3 && temp > 0.05f) {
-            return registry.get(new Identifier("minecraft", "snowy_beach"));
-        }
-        if (humid > 0.3 && temp > 0.2f) {
-            return registry.get(new Identifier("minecraft", "stone_shore"));
-        }
-        if (humid > 0.4 && temp > 0.8f) {
-            return registry.get(new Identifier("minecraft", "sunflower_plains"));
-        }
-        if (humid > 0.6 && temp > 0.6f) {
-            return registry.get(new Identifier("minecraft", "tall_birch_forest"));
-        }
-        if (humid > 0.0 && temp > 2.0f) {
-            return registry.get(new Identifier("minecraft", "wooded_badlands_plateau"));
-        }
-        if (humid > 0.8 && temp > 0.7f) {
-            return registry.get(new Identifier("minecraft", "wooded_hills"));
-        } else return registry.get(new Identifier("minecraft", "shattered_savanna"));
     }
     public Biome getOceanBiome(float temp, float humid, Registry<Biome> registry) {
         humid *= temp;
