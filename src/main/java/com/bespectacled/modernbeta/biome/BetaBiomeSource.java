@@ -59,7 +59,7 @@ public class BetaBiomeSource extends BiomeSource {
 
     public BetaBiomeSource(long seed, Registry<Biome> registry, CompoundTag settings) {
         super(BetaBiomes.getBiomeList().stream().map((registryKey) -> () -> (Biome) registry.get(registryKey)));
-
+        ModernBeta.LOGGER.log(Level.INFO, "HELLO THIS IS THE SEED : " + seed);
         this.seed = seed;
         this.biomeRegistry = registry;
         this.settings = settings;
@@ -219,63 +219,70 @@ public class BetaBiomeSource extends BiomeSource {
     // TODO: Fix weird bands of cold biomes next to deserts/jungles/savannas
     public Biome getBiome(float temp, float humid, Registry<Biome> registry) {
         humid *= temp;
-        if (humid < 0.2) {
-            if (temp > 0.85) {
+
+        Random random1 = new Random(333);
+        float generateMushroom = random1.nextFloat() * 4;
+
+        if (temp < 0.2)
+            return registry.get(new Identifier(ModernBeta.ID, "tundra"));
+        if (humid < 0.05)
+            if (temp > 0.9)
                 return registry.get(new Identifier("minecraft", "badlands"));
-            } else if (temp > 0.65) {
+            else
                 return registry.get(new Identifier(ModernBeta.ID, "desert"));
-            } else if (temp > 0.2) {
-                return registry.get(new Identifier(ModernBeta.ID, "tundra"));
-            } else {
+        if (humid < 0.2)
+            if (temp > 0.65)
+                return registry.get(new Identifier(ModernBeta.ID, "desert"));
+            else
                 return registry.get(new Identifier("minecraft", "ice_spikes"));
-        }
-        } else if (humid < 0.3) {
-            return registry.get(new Identifier(ModernBeta.ID, "savanna"));
-        } else if (humid < 0.5) {
-            if (temp > 0.7) {
-                return registry.get(new Identifier("minecraft", "sunflower_plains"));
-            } else if (temp > 0.6) {
-                return registry.get(new Identifier(ModernBeta.ID, "plains"));
-            } else if (temp > 0.2) {
+        else if (humid < 0.3)
+            if (temp > 0.5)
+                return registry.get(new Identifier(ModernBeta.ID, "savanna"));
+            else
                 return registry.get(new Identifier(ModernBeta.ID, "shrubland"));
-            } else {
+        else if (humid < 0.5)
+            if (temp > 0.7)
+                return registry.get(new Identifier("minecraft", "sunflower_plains"));
+            else if (temp > 0.6)
+                return registry.get(new Identifier(ModernBeta.ID, "plains"));
+            else if (temp > 0.2)
+                return registry.get(new Identifier(ModernBeta.ID, "shrubland"));
+            else
                 return registry.get(new Identifier(ModernBeta.ID, "taiga"));
-            }
-        } else if (humid < 0.625) {
-            if (temp > 0.5) {
+        else if (humid < 0.625)
+            if (temp > 0.5)
                 return registry.get(new Identifier("minecraft", "tall_birch_forest"));
-            } else {
+            else
                 return registry.get(new Identifier("minecraft", "birch_forest"));
-            }
-        } else if (humid < 0.7) {
+        else if (humid < 0.7)
             return registry.get(new Identifier(ModernBeta.ID, "seasonal_forest"));
-        } else if (humid < 0.8) {
-            if (temp > 0.7) {
+        else if (humid < 0.8)
+            if (temp > 0.7)
                 return registry.get(new Identifier("minecraft", "dark_forest"));
-            } else if (temp > 0.6) {
+            else if (temp > 0.6)
                 return registry.get(new Identifier("minecraft", "flower_forest"));
-            } else if (temp > 0.3) {
+            else if (temp > 0.3)
                 return registry.get(new Identifier(ModernBeta.ID, "forest"));
-            } else {
+            else
                 return registry.get(new Identifier("minecraft", "giant_tree_taiga"));
-            }
-        } else if (humid < 0.85) {
+        else if (humid < 0.85)
             return registry.get(new Identifier(ModernBeta.ID, "swampland"));
-        } else if (humid < 0.9) {
-            if (temp > 0.8) {
+        else if (humid < 0.9)
+            if (temp > 0.8)
                 return registry.get(new Identifier("minecraft", "jungle"));
-            } else if (temp > 0.7) {
+            else if (temp > 0.7)
                 return registry.get(new Identifier("minecraft", "bamboo_jungle"));
-            } else {
+            else
                 return registry.get(new Identifier(ModernBeta.ID, "rainforest"));
-            }
-        } else {
-            if (temp > 0.9) {
-                return registry.get(new Identifier("minecraft", "mushroom_fields"));
-            } else {
-                return registry.get(new Identifier("minecraft", "mushroom_field_shore"));
-            }
-        }
+        else
+            if (temp > 0.98f)
+                if (generateMushroom > 1.0)
+                    return registry.get(new Identifier("minecraft", "mushroom_fields"));
+                else
+                    return registry.get(new Identifier(ModernBeta.ID, "rainforest"));
+            else
+                return registry.get(new Identifier(ModernBeta.ID, "rainforest"));
+
     }
     public Biome getOceanBiome(float temp, float humid, Registry<Biome> registry) {
         humid *= temp;
