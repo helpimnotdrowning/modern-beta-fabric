@@ -147,12 +147,12 @@ public class BetaBiomeSource extends BiomeSource {
                 return registry.get(BetaBiomes.DESERT_ID);
             else
                 return registry.get(BetaBiomes.V_ICE_SPIKES);
-        else if (humid < 0.3)
+        if (humid < 0.3)
             if (temp > 0.5)
                 return registry.get(BetaBiomes.SAVANNA_ID);
             else
                 return registry.get(BetaBiomes.SHRUBLAND_ID);
-        else if (humid < 0.5)
+        if (humid < 0.5)
             if (temp > 0.7)
                 return registry.get(BetaBiomes.V_SUNFLOWER_PLAINS);
             else if (temp > 0.6)
@@ -161,14 +161,14 @@ public class BetaBiomeSource extends BiomeSource {
                 return registry.get(BetaBiomes.SHRUBLAND_ID);
             else
                 return registry.get(BetaBiomes.TAIGA_ID);
-        else if (humid < 0.625)
+        if (humid < 0.625)
             if (temp > 0.5)
                 return registry.get(BetaBiomes.V_TALL_BIRCH_FOREST);
             else
                 return registry.get(BetaBiomes.V_BIRCH_FOREST);
-        else if (humid < 0.7)
+        if (humid < 0.7)
             return registry.get(BetaBiomes.SEASONAL_FOREST_ID);
-        else if (humid < 0.8)
+        if (humid < 0.8)
             if (temp > 0.7)
                 return registry.get(BetaBiomes.V_DARK_FOREST);
             else if (temp > 0.6)
@@ -177,20 +177,19 @@ public class BetaBiomeSource extends BiomeSource {
                 return registry.get(BetaBiomes.FOREST_ID);
             else
                 return registry.get(BetaBiomes.V_GIANT_TREE_TAIGA);
-        else if (humid < 0.85)
+        if (humid < 0.85)
             return registry.get(BetaBiomes.SWAMPLAND_ID);
-        else if (humid < 0.9)
+        if (humid < 0.9)
             if (temp > 0.8)
                 return registry.get(BetaBiomes.V_JUNGLE);
             else if (temp > 0.7)
                 return registry.get(BetaBiomes.V_BAMBOO_JUNGLE);
             else
                 return registry.get(BetaBiomes.RAINFOREST_ID);
-        else
         if (temp > 0.98f)
-            return registry.get(BetaBiomes.V_MUSHROOM);
-        else
             return registry.get(BetaBiomes.RAINFOREST_ID);
+        else
+            return registry.get(BetaBiomes.V_MUSHROOM);
 
     }
 
