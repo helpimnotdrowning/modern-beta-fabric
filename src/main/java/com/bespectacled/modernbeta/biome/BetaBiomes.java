@@ -39,17 +39,17 @@ public class BetaBiomes {
 
     public static final Identifier SKY_ID = new Identifier(ModernBeta.ID, "sky");
 
-    public static final Identifier V_BADLANDS = new Identifier("minecraft","badlands");
-    public static final Identifier V_ICE_SPIKES = new Identifier("minecraft","ice_spikes");
-    public static final Identifier V_SUNFLOWER_PLAINS = new Identifier("minecraft","sunflower_plains");
-    public static final Identifier V_TALL_BIRCH_FOREST = new Identifier("minecraft","tall_birch_forest");
-    public static final Identifier V_BIRCH_FOREST = new Identifier("minecraft","birch_forest");
-    public static final Identifier V_DARK_FOREST = new Identifier("minecraft","dark_forest");
-    public static final Identifier V_FLOWER_FOREST = new Identifier("minecraft","flower_forest");
-    public static final Identifier V_GIANT_TREE_TAIGA = new Identifier("minecraft","giant_tree_taiga");
-    public static final Identifier V_JUNGLE = new Identifier("minecraft","jungle");
-    public static final Identifier V_BAMBOO_JUNGLE = new Identifier("minecraft","bamboo_jungle");
-    public static final Identifier V_MUSHROOM = new Identifier("minecraft","mushroom_fields");
+    public static final Identifier V_BADLANDS = new Identifier(ModernBeta.ID,"v_badlands");
+    public static final Identifier V_ICE_SPIKES = new Identifier(ModernBeta.ID,"v_ice_spikes");
+    public static final Identifier V_SUNFLOWER_PLAINS = new Identifier(ModernBeta.ID,"v_sunflower_plains");
+    public static final Identifier V_TALL_BIRCH_FOREST = new Identifier(ModernBeta.ID,"v_tall_birch_forest");
+    public static final Identifier V_BIRCH_FOREST = new Identifier(ModernBeta.ID,"v_birch_forest");
+    public static final Identifier V_DARK_FOREST = new Identifier(ModernBeta.ID,"v_dark_forest");
+    public static final Identifier V_FLOWER_FOREST = new Identifier(ModernBeta.ID,"v_flower_forest");
+    public static final Identifier V_GIANT_TREE_TAIGA = new Identifier(ModernBeta.ID,"v_giant_tree_taiga");
+    public static final Identifier V_JUNGLE = new Identifier(ModernBeta.ID,"v_jungle");
+    public static final Identifier V_BAMBOO_JUNGLE = new Identifier(ModernBeta.ID,"v_bamboo_jungle");
+    public static final Identifier V_MUSHROOM = new Identifier(ModernBeta.ID,"v_mushroom_fields");
     
     public static final ImmutableList<Identifier> BIOMES = ImmutableList.of(
         FOREST_ID,
@@ -70,7 +70,19 @@ public class BetaBiomes {
         COLD_OCEAN_ID,
         FROZEN_OCEAN_ID,
 
-        SKY_ID
+        SKY_ID,
+
+        V_BADLANDS,
+        V_ICE_SPIKES,
+        V_SUNFLOWER_PLAINS,
+        V_TALL_BIRCH_FOREST,
+        V_BIRCH_FOREST,
+        V_DARK_FOREST,
+        V_FLOWER_FOREST,
+        V_GIANT_TREE_TAIGA,
+        V_JUNGLE,
+        V_BAMBOO_JUNGLE,
+        V_MUSHROOM
     );
 
     private static Map<String, Biome> biomeMappings = new HashMap();
