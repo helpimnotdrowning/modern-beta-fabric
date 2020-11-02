@@ -139,14 +139,14 @@ public class BetaBiomeSource extends BiomeSource {
             return registry.get(BetaBiomes.TUNDRA_ID);
         if (humid < 0.05)
             if (temp > 0.9)
-                return registry.get(new Identifier("minecraft", "badlands"));
+                return registry.get(BetaBiomes.V_BADLANDS);
             else
                 return registry.get(BetaBiomes.DESERT_ID);
         if (humid < 0.2)
             if (temp > 0.65)
                 return registry.get(BetaBiomes.DESERT_ID);
             else
-                return registry.get(new Identifier("minecraft", "ice_spikes"));
+                return registry.get(BetaBiomes.V_ICE_SPIKES);
         else if (humid < 0.3)
             if (temp > 0.5)
                 return registry.get(BetaBiomes.SAVANNA_ID);
@@ -154,7 +154,7 @@ public class BetaBiomeSource extends BiomeSource {
                 return registry.get(BetaBiomes.SHRUBLAND_ID);
         else if (humid < 0.5)
             if (temp > 0.7)
-                return registry.get(new Identifier("minecraft", "sunflower_plains"));
+                return registry.get(BetaBiomes.V_SUNFLOWER_PLAINS);
             else if (temp > 0.6)
                 return registry.get(BetaBiomes.PLAINS_ID);
             else if (temp > 0.2)
@@ -163,32 +163,32 @@ public class BetaBiomeSource extends BiomeSource {
                 return registry.get(BetaBiomes.TAIGA_ID);
         else if (humid < 0.625)
             if (temp > 0.5)
-                return registry.get(new Identifier("minecraft", "tall_birch_forest"));
+                return registry.get(BetaBiomes.V_TALL_BIRCH_FOREST);
             else
-                return registry.get(new Identifier("minecraft", "birch_forest"));
+                return registry.get(BetaBiomes.V_BIRCH_FOREST);
         else if (humid < 0.7)
             return registry.get(BetaBiomes.SEASONAL_FOREST_ID);
         else if (humid < 0.8)
             if (temp > 0.7)
-                return registry.get(new Identifier("minecraft", "dark_forest"));
+                return registry.get(BetaBiomes.V_DARK_FOREST);
             else if (temp > 0.6)
-                return registry.get(new Identifier("minecraft", "flower_forest"));
+                return registry.get(BetaBiomes.V_FLOWER_FOREST);
             else if (temp > 0.3)
                 return registry.get(BetaBiomes.FOREST_ID);
             else
-                return registry.get(new Identifier("minecraft", "giant_tree_taiga"));
+                return registry.get(BetaBiomes.V_GIANT_TREE_TAIGA);
         else if (humid < 0.85)
             return registry.get(BetaBiomes.SWAMPLAND_ID);
         else if (humid < 0.9)
             if (temp > 0.8)
-                return registry.get(new Identifier("minecraft", "jungle"));
+                return registry.get(BetaBiomes.V_JUNGLE);
             else if (temp > 0.7)
-                return registry.get(new Identifier("minecraft", "bamboo_jungle"));
+                return registry.get(BetaBiomes.V_BAMBOO_JUNGLE);
             else
                 return registry.get(BetaBiomes.RAINFOREST_ID);
         else
         if (temp > 0.98f)
-            return registry.get(new Identifier("minecraft", "mushroom_fields"));
+            return registry.get(BetaBiomes.V_MUSHROOM);
         else
             return registry.get(BetaBiomes.RAINFOREST_ID);
 

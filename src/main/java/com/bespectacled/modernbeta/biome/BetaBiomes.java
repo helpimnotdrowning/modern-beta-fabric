@@ -36,8 +36,20 @@ public class BetaBiomes {
     public static final Identifier WARM_OCEAN_ID = new Identifier(ModernBeta.ID, "warm_ocean");
     public static final Identifier COLD_OCEAN_ID = new Identifier(ModernBeta.ID, "cold_ocean");
     public static final Identifier FROZEN_OCEAN_ID = new Identifier(ModernBeta.ID, "frozen_ocean");
-    
+
     public static final Identifier SKY_ID = new Identifier(ModernBeta.ID, "sky");
+
+    public static final Identifier V_BADLANDS = new Identifier("minecraft","badlands");
+    public static final Identifier V_ICE_SPIKES = new Identifier("minecraft","ice_spikes");
+    public static final Identifier V_SUNFLOWER_PLAINS = new Identifier("minecraft","sunflower_plains");
+    public static final Identifier V_TALL_BIRCH_FOREST = new Identifier("minecraft","tall_birch_forest");
+    public static final Identifier V_BIRCH_FOREST = new Identifier("minecraft","birch_forest");
+    public static final Identifier V_DARK_FOREST = new Identifier("minecraft","dark_forest");
+    public static final Identifier V_FLOWER_FOREST = new Identifier("minecraft","flower_forest");
+    public static final Identifier V_GIANT_TREE_TAIGA = new Identifier("minecraft","giant_tree_taiga");
+    public static final Identifier V_JUNGLE = new Identifier("minecraft","jungle");
+    public static final Identifier V_BAMBOO_JUNGLE = new Identifier("minecraft","bamboo_jungle");
+    public static final Identifier V_MUSHROOM = new Identifier("minecraft","mushroom_fields");
     
     public static final ImmutableList<Identifier> BIOMES = ImmutableList.of(
         FOREST_ID,
