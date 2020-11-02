@@ -80,15 +80,15 @@ public class SkylandsChunkGenerator extends NoiseChunkGenerator {
     private double gravelNoise[];
     private double stoneNoise[];
 
-    private double mainNoise[]; 
+    private double mainNoise[];
     private double minLimitNoise[];
     private double maxLimitNoise[];
 
     private double scaleNoise[];
     private double depthNoise[];
-    
+
     private double temps[];
-    
+
     private boolean generateSkyDim;
 
     // Block Y-height cache, from Beta+
@@ -96,18 +96,18 @@ public class SkylandsChunkGenerator extends NoiseChunkGenerator {
     private static final int[][] CHUNK_Y = new int[16][16];
 
     private static final double HEIGHTMAP[] = new double[397];
-    
+
     private static final Mutable POS = new Mutable();
-    
+
     private static final Random RAND = new Random();
     private static final ChunkRandom FEATURE_RAND = new ChunkRandom();
-    
+
     private static final ObjectList<StructurePiece> STRUCTURE_LIST = (ObjectList<StructurePiece>) new ObjectArrayList(10);
     private static final ObjectList<JigsawJunction> JIGSAW_LIST = (ObjectList<JigsawJunction>) new ObjectArrayList(32);
-    
+
     private static final double[] TEMPS = new double[256];
     private static final double[] HUMIDS = new double[256];
-    
+
     private static final Biome[] BIOMES = new Biome[256];
     private static final Biome[] OCEAN_BIOMES = new Biome[256];
 
@@ -253,7 +253,7 @@ public class SkylandsChunkGenerator extends NoiseChunkGenerator {
                             double var14 = 0.125D;
                             double density = var10; // var15
                             double var16 = (var11 - var10) * var14; // More lerp
-                            
+
                             for (int n = 0; n < 8; n++) {
                                 double temp = 0;
                                 double noiseWeight;
@@ -421,12 +421,12 @@ public class SkylandsChunkGenerator extends NoiseChunkGenerator {
 
         int chunkX = chunk.getPos().x;
         int chunkZ = chunk.getPos().z;
-        
+
         BiomeMath.fetchTempHumid(chunkX << 4, chunkZ << 4, TEMPS, HUMIDS);
         biomeSource.fetchBiomes(TEMPS, HUMIDS, BIOMES, OCEAN_BIOMES);
 
         Biome curBiome;
-        
+
         stoneNoise = stoneNoiseOctaves.generateBetaNoiseOctaves(stoneNoise, chunkX * 16, chunkZ * 16, 0.0D, 16, 16, 1,
                 thirtysecond * 2D, thirtysecond * 2D, thirtysecond * 2D);
 
@@ -530,7 +530,7 @@ public class SkylandsChunkGenerator extends NoiseChunkGenerator {
 
         int int3_0 = byte2 + 1;
         int int3_1 = byte2 + 1;
-        
+
         int chunkX = absX >> 4;
         int chunkZ = absZ >> 4;
 
@@ -599,7 +599,7 @@ public class SkylandsChunkGenerator extends NoiseChunkGenerator {
 
     @Override
     public BlockPos locateStructure(ServerWorld world, StructureFeature<?> feature, BlockPos center, int radius,
-            boolean skipExistingChunks) {
+                                    boolean skipExistingChunks) {
         if (feature.equals(StructureFeature.OCEAN_RUIN) || feature.equals(StructureFeature.SHIPWRECK)
                 || feature.equals(StructureFeature.BURIED_TREASURE)) {
             return null;
@@ -622,7 +622,7 @@ public class SkylandsChunkGenerator extends NoiseChunkGenerator {
     public ChunkGenerator withSeed(long seed) {
         return new SkylandsChunkGenerator(this.biomeSource.withSeed(seed), seed, this.settings);
     }
-    
+
     public boolean isSkyDim() {
         return this.generateSkyDim;
     }

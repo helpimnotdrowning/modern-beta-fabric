@@ -37,33 +37,33 @@ import org.spongepowered.asm.mixin.injection.At;
  */
 @Mixin(value = ClientWorld.class, priority = 1)
 public abstract class MixinClientWorld extends World {
-    
+
     @Unique
     private BlockPos curBlockPos = new BlockPos(0, 0, 0);
-    
+
     @Unique
     private ModernBetaConfig BETA_CONFIG = ModernBeta.BETA_CONFIG;
-    
+
     @Unique
     private boolean isBetaWorld = true;
-    
+
     @Unique
     private boolean isOverworld = false;
-    
+
     @Shadow
     private MinecraftClient client;
-    
+
     @Shadow
     private Properties clientWorldProperties;
-    
+
     @Unique
     private long worldSeed = 0L;
 
     private MixinClientWorld() {
         super(null, null, null, null, false, false, 0L);
-        
+
     }
-    
+
     @Unique
     private static void setSeed(long seed) {
         BiomeMath.setSeed(seed);
@@ -71,67 +71,67 @@ public abstract class MixinClientWorld extends World {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void init(ClientPlayNetworkHandler netHandler, ClientWorld.Properties properties,
-            RegistryKey<World> worldKey, DimensionType dimensionType, int loadDistance, Supplier<Profiler> profiler,
-            WorldRenderer renderer, boolean debugWorld, long seed, CallbackInfo ci) {
+                      RegistryKey<World> worldKey, DimensionType dimensionType, int loadDistance, Supplier<Profiler> profiler,
+                      WorldRenderer renderer, boolean debugWorld, long seed, CallbackInfo ci) {
 
         if (client.getServer() != null) { // Server check
-           ChunkGenerator generator = client.getServer().getOverworld().getChunkManager().getChunkGenerator();
-           this.setWorldProperties(generator, generator.worldSeed);
+            ChunkGenerator generator = client.getServer().getOverworld().getChunkManager().getChunkGenerator();
+            this.setWorldProperties(generator, generator.worldSeed);
         }
 
         this.isOverworld = worldKey.getValue().equals(DimensionType.OVERWORLD_REGISTRY_KEY.getValue());
-        
+
         ModernBeta.setBlockColorsSeed(worldSeed, isBetaWorld);
     }
-    
+
     @Unique
     private void setWorldProperties(ChunkGenerator gen, long seed) {
         this.worldSeed = seed;
         this.isBetaWorld = false;
-        
+
         if (gen instanceof BetaChunkGenerator || (gen instanceof SkylandsChunkGenerator &&  !((SkylandsChunkGenerator)gen).isSkyDim())) {
             this.isBetaWorld = true;
-            
+
             this.worldSeed = BETA_CONFIG.fixedSeed == 0L ? worldSeed : BETA_CONFIG.fixedSeed;
             setSeed(this.worldSeed);
         }
-        
+
         /*
         if (gen instanceof IndevChunkGenerator) {
             IndevChunkGenerator indevGen = (IndevChunkGenerator)gen;
-            
+
             if (indevGen.getTheme() == IndevUtil.Theme.PARADISE) {
                 System.out.println("Setting...");
                 this.clientWorldProperties.setTime(12000);
                 this.getGameRules().<GameRules.BooleanRule>get(GameRules.DO_DAYLIGHT_CYCLE).set(false, null);
                 System.out.println(this.getGameRules().getBoolean(GameRules.DO_DAYLIGHT_CYCLE));
             }
-            
+
         }
         */
     }
-    
+
     @ModifyVariable(
-        method = "method_23777",
-        at = @At("HEAD"),
-        index = 1
+            method = "method_23777",
+            at = @At("HEAD"),
+            index = 1
     )
     private BlockPos captureBlockPos(BlockPos pos) {
         curBlockPos = pos;
-        
+
         return pos;
     }
-    
+
     @ModifyVariable(
-        method = "method_23777",
-        at = @At(value = "INVOKE_ASSIGN",  target = "Lnet/minecraft/world/biome/Biome;getSkyColor()I"),
-        index = 6  
+            method = "method_23777",
+            at = @At(value = "INVOKE_ASSIGN",  target = "Lnet/minecraft/world/biome/Biome;getSkyColor()I"),
+            index = 6
     )
     private int injectBetaSkyColor(int skyColor) {
         if (isBetaWorld && BETA_CONFIG.renderBetaSkyColor && this.isOverworld) {
             skyColor = getBetaSkyColor(curBlockPos);
         }
-        
+
         return skyColor;
     }
 
