@@ -78,7 +78,19 @@
     "biome.modern_beta.tundra": "Beta Tundra",
     "biome.modern_beta.ice_desert": "Beta Ice Desert",
     "biome.modern_beta.sky": "Beta Sky",
-    
+
+    "biome.modern_beta.v_badlands": "Beta-ified Badlands",
+    "biome.modern_beta.v_ice_spikes": "Beta-ified Ice Spikes",
+    "biome.modern_beta.v_sunflower_plains": "Beta-ified Sunflower Plains",
+    "biome.modern_beta.v_tall_birch_forest": "Beta-ified Tall Birch Forest",
+    "biome.modern_beta.v_birch_forest": "Beta-ified Birch Forest",
+    "biome.modern_beta.v_dark_forest": "Beta-ified Dark Forest",
+    "biome.modern_beta.v_flower_forest": "Beta-ified Flower Forest",
+    "biome.modern_beta.v_giant_tree_taiga": "Beta-ified Giant Tree Taiga",
+    "biome.modern_beta.v_jungle": "Beta-ified Jungle",
+    "biome.modern_beta.v_bamboo_jungle": "Beta-ified Bamboo Jungle",
+    "biome.modern_beta.v_mushroom_fields": "Beta-ified Mushroom Fields",
+
     "biome.modern_beta.ocean": "Beta Ocean",
     "biome.modern_beta.lukewarm_ocean": "Beta Lukewarm Ocean",
     "biome.modern_beta.warm_ocean": "Beta Warm Ocean",
